@@ -80,6 +80,7 @@ type Message struct {
 // DecodedField represents a decoded field
 type DecodedField struct {
 	ID           uint16
+	Name         string
 	Value        interface{}
 	EnterpriseNo uint32
 }
@@ -536,6 +537,7 @@ func (d *Decoder) decodeData(tr TemplateRecord) ([]DecodedField, error) {
 
 		fields = append(fields, DecodedField{
 			ID:           m.FieldID,
+			Name:         m.Name,
 			Value:        Interpret(&b, m.Type),
 			EnterpriseNo: tr.ScopeFieldSpecifiers[i].EnterpriseNo,
 		})
@@ -548,8 +550,8 @@ func (d *Decoder) decodeData(tr TemplateRecord) ([]DecodedField, error) {
 		}]
 
 		if !ok {
-			return nil, nonfatalError{fmt.Errorf("IPFIX element key (%d) not exist",
-				tr.FieldSpecifiers[i].ElementID)}
+			return nil, nonfatalError{fmt.Errorf("IPFIX element key (%d), enterpriseNo (%d) not exist",
+				tr.FieldSpecifiers[i].ElementID, tr.FieldSpecifiers[i].EnterpriseNo)}
 		}
 
 		if readLength, err = d.getDataLength(tr.FieldSpecifiers[i].Length, m.Type); err != nil {
@@ -562,6 +564,7 @@ func (d *Decoder) decodeData(tr TemplateRecord) ([]DecodedField, error) {
 
 		fields = append(fields, DecodedField{
 			ID:           m.FieldID,
+			Name:         m.Name,
 			Value:        Interpret(&b, m.Type),
 			EnterpriseNo: tr.FieldSpecifiers[i].EnterpriseNo,
 		})
