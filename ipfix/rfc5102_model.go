@@ -620,7 +620,8 @@ var InfoModel = IANAInfoModel{
 	ElementKey{41263, 2}: InfoElementEntry{FieldID: 2, Name: "RuleUUID", Type: FieldTypes["octetArray"]},
 	ElementKey{41263, 3}: InfoElementEntry{FieldID: 3, Name: "MicrosegMsgState", Type: FieldTypes["unsigned32"]},
 	ElementKey{41263, 4}: InfoElementEntry{FieldID: 4, Name: "PerFlowBytes", Type: FieldTypes["unsigned32"]},
-	ElementKey{41263, 5}: InfoElementEntry{FieldID: 5, Name: "AhvHostUUID", Type: FieldTypes["octetArray"]}}
+	ElementKey{41263, 5}: InfoElementEntry{FieldID: 5, Name: "AhvHostUUID", Type: FieldTypes["octetArray"]},
+	ElementKey{41263, 6}: InfoElementEntry{FieldID: 6, Name: "VPCUUID", Type: FieldTypes["octetArray"]}}
 
 // LoadExtElements loads ipfix elements information through ipfix.elemets file
 func LoadExtElements(cfgPath string) error {
